@@ -28,6 +28,9 @@ task clean(type: Delete) {
 }
 
 ext {
+    // Android Core versions
+    guavaVersion = '27.0.1-android'
+
     // Arch Component versions
     room_version = "2.2.2"
     // End Arch Component versions
