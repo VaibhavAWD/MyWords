@@ -31,4 +31,7 @@ ext {
     // Arch Component versions
     room_version = "2.2.2"
     // End Arch Component versions
+
+    // Instrumented Testing versions
+    androidXTestCoreVersion = '1.2.0-beta01'
 }
