@@ -1,6 +1,7 @@
-package test.practice.mywords.data
+package test.practice.mywords.data.local
 
 import androidx.room.*
+import test.practice.mywords.data.Word
 
 @Dao
 interface WordsDao {

@@ -1,4 +1,4 @@
-package test.practice.mywords
+package test.practice.mywords.data.local
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
@@ -13,8 +13,8 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import test.practice.mywords.data.Word
-import test.practice.mywords.data.WordsDao
-import test.practice.mywords.data.WordsDatabase
+import test.practice.mywords.data.local.WordsDao
+import test.practice.mywords.data.local.WordsDatabase
 
 @RunWith(AndroidJUnit4::class)
 @SmallTest

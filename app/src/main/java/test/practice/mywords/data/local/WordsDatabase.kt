@@ -1,9 +1,10 @@
-package test.practice.mywords.data
+package test.practice.mywords.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import test.practice.mywords.data.Word
 
 @Database(
     version = 1,
@@ -19,12 +20,16 @@ abstract class WordsDatabase : RoomDatabase() {
         var INSTANCE: WordsDatabase? = null
 
         fun getInstance(context: Context): WordsDatabase {
-            val tempInstance = INSTANCE
+            val tempInstance =
+                INSTANCE
             if (tempInstance != null) {
                 return tempInstance
             }
             synchronized(this) {
-                val instance = buildDb(context)
+                val instance =
+                    buildDb(
+                        context
+                    )
                 INSTANCE = instance
                 return instance
             }
