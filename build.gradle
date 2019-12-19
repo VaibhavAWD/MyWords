@@ -35,6 +35,12 @@ ext {
     room_version = "2.2.2"
     // End Arch Component versions
 
+    // Unit Testing versions
+    truthVersion = '0.44'
+
     // Instrumented Testing versions
     androidXTestCoreVersion = '1.2.0-beta01'
+
+    // Third Party versions
+    timber_version = "4.7.1"
 }

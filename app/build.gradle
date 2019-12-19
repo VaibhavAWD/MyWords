@@ -45,10 +45,15 @@ dependencies {
 
     // Unit Testing Dependencies
     testImplementation 'junit:junit:4.12'
+    testImplementation "com.google.truth:truth:$truthVersion"
 
     // Instrumented Testing Dependencies
     testImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation "androidx.room:room-testing:$room_version"
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // Third Party Dependencies
+    // Timber - For logging
+    implementation "com.jakewharton.timber:timber:$timber_version"
 }
