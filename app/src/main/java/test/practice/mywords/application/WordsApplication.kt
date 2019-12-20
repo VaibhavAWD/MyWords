@@ -1,4 +1,4 @@
-package test.practice.mywords.data
+package test.practice.mywords.application
 
 import android.app.Application
 import test.practice.mywords.BuildConfig
