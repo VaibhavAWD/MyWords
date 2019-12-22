@@ -32,11 +32,14 @@ ext {
     guavaVersion = '27.0.1-android'
 
     // Arch Component versions
-    room_version = "2.2.2"
+    lifecycle_version = "2.2.0-rc03"
+    room_version = "2.2.3"
     // End Arch Component versions
 
     // Unit Testing versions
     truthVersion = '0.44'
+    coroutinesVersion = '1.1.0'
+    archTestingVersion = '2.0.0'
 
     // Instrumented Testing versions
     androidXTestCoreVersion = '1.2.0-beta01'
