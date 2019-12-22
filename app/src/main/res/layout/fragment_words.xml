@@ -12,6 +12,10 @@
         <variable
             name="viewmodel"
             type="test.practice.mywords.ui.words.WordsViewModel" />
+
+        <variable
+            name="adapter"
+            type="test.practice.mywords.ui.words.WordsListAdapter" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -37,9 +41,12 @@
                     android:id="@+id/list_words"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:dividerOrientation="@{LinearLayout.VERTICAL}"
                     android:scrollbars="vertical"
                     android:visibility="@{viewmodel.empty ? View.GONE : View.VISIBLE}"
+                    app:adapter="@{adapter}"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:words="@{viewmodel.words}"
                     tools:listitem="@layout/item_word" />
 
                 <TextView

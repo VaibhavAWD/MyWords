@@ -6,6 +6,10 @@
         <variable
             name="word"
             type="test.practice.mywords.data.Word" />
+
+        <variable
+            name="listener"
+            type="test.practice.mywords.ui.words.WordsListUserActionsListener" />
     </data>
 
     <TextView xmlns:tools="http://schemas.android.com/tools"
@@ -15,6 +19,7 @@
         android:ellipsize="end"
         android:gravity="center_vertical"
         android:maxLines="1"
+        android:onClick="@{() -> listener.onWordClicked(word)}"
         android:paddingLeft="@dimen/sixteen"
         android:paddingRight="@dimen/sixteen"
         android:text="@{word.word}"
