@@ -1,9 +1,6 @@
 package test.practice.mywords.ui.words
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 import test.practice.mywords.R
 import test.practice.mywords.data.Result.Success
@@ -15,6 +12,10 @@ class WordsViewModel(private val repository: WordsRepository) : ViewModel() {
 
     private val _words = MutableLiveData<List<Word>>()
     val words: LiveData<List<Word>> = _words
+
+    val empty: LiveData<Boolean> = Transformations.map(_words) {
+        it.isEmpty()
+    }
 
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> = _dataLoading

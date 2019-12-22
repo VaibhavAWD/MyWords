@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="word"
+            type="test.practice.mywords.data.Word" />
+    </data>
+
+    <TextView xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/item_word"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingLeft="@dimen/sixteen"
+        android:paddingRight="@dimen/sixteen"
+        android:text="@{word.word}"
+        tools:text="@tools:sample/lorem/random" />
+
+</layout>
