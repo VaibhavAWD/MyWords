@@ -58,6 +58,9 @@ class EditorViewModelTest {
         // WHEN - the new word is saved
         editorViewModel.saveWord()
 
+        // Then soft keyboard is closed
+        assertLiveDataEventTriggered(editorViewModel.closeSoftKeyboard, Unit)
+
         // Execute pending coroutines actions
         testContext.triggerActions()
 

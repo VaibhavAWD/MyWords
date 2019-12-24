@@ -21,8 +21,12 @@ class EditorViewModel(private val repository: WordsRepository) : ViewModel() {
     private val _newWordAddedEvent = MutableLiveData<Event<Unit>>()
     val newWordAddedEvent: LiveData<Event<Unit>> = _newWordAddedEvent
 
+    private val _closeSoftKeyboard = MutableLiveData<Event<Unit>>()
+    val closeSoftKeyboard: LiveData<Event<Unit>> = _closeSoftKeyboard
+
     fun saveWord() {
         if (!hasValidData()) return
+        _closeSoftKeyboard.value = Event(Unit)
         viewModelScope.launch {
             val newWord = Word(word.value!!)
             repository.saveWord(newWord)
