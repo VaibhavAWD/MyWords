@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_words.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -51,27 +52,28 @@ class WordsFragment : Fragment(), KodeinAware {
     }
 
     private fun setupMessage() {
-        binding.viewmodel?.snackbarMessage?.observe(this, EventObserver { message ->
+        binding.viewmodel?.snackbarMessage?.observe(viewLifecycleOwner, EventObserver { message ->
             fragment_words?.showSnackbar(message)
         })
     }
 
     private fun setupNavigation() {
-        binding.viewmodel?.newWordEvent?.observe(this, EventObserver {
+        binding.viewmodel?.newWordEvent?.observe(viewLifecycleOwner, EventObserver {
             navigateToEditorFragment()
         })
 
-        binding.viewmodel?.openWordEvent?.observe(this, EventObserver { word ->
+        binding.viewmodel?.openWordEvent?.observe(viewLifecycleOwner, EventObserver { word ->
             navigateToWordDetailFragment(word)
         })
     }
 
     private fun loadWords() {
-        binding.viewmodel?.loadWords(true)
+        binding.viewmodel?.loadWords()
     }
 
     private fun navigateToEditorFragment() {
-        // TODO: Navigate to EditorFragment.
+        val action = WordsFragmentDirections.actionAddNewWord()
+        findNavController().navigate(action)
     }
 
     private fun navigateToWordDetailFragment(word: String) {
