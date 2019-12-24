@@ -16,6 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -59,6 +60,7 @@ dependencies {
     implementation "com.google.guava:guava:$guavaVersion"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "com.google.android.material:material:$material_version"
+    implementation 'com.android.support:multidex:1.0.3'
 
     // Architecture Component Dependencies
     // Room
@@ -88,4 +90,7 @@ dependencies {
     // Third Party Dependencies
     // Timber - For logging
     implementation "com.jakewharton.timber:timber:$timber_version"
+    // Kodein - For dependencies Injection
+    implementation "org.kodein.di:kodein-di-generic-jvm:$kodein_version"
+    implementation "org.kodein.di:kodein-di-framework-android-x:$kodein_version"
 }

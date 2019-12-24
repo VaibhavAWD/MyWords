@@ -51,4 +51,5 @@ ext {
 
     // Third Party versions
     timber_version = "4.7.1"
+    kodein_version = "6.3.3"
 }
