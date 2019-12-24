@@ -1,10 +1,9 @@
 package test.practice.mywords.ui.words
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_words.*
 import org.kodein.di.KodeinAware
@@ -46,14 +45,37 @@ class WordsFragment : Fragment(), KodeinAware {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        setupMessage()
+        setupEvents()
         setupNavigation()
         loadWords()
     }
 
-    private fun setupMessage() {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.fragment_words, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_delete_all -> {
+                binding.viewmodel?.deleteAllWords()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun setupEvents() {
         binding.viewmodel?.snackbarMessage?.observe(viewLifecycleOwner, EventObserver { message ->
             fragment_words?.showSnackbar(message)
+        })
+
+        binding.viewmodel?.empty?.observe(viewLifecycleOwner, Observer { isEmpty ->
+            // show delete all option only if data is available
+            if (isEmpty) {
+                setHasOptionsMenu(false)
+            } else {
+                setHasOptionsMenu(true)
+            }
         })
     }
 
