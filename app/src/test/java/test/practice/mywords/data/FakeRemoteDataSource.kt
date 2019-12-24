@@ -2,10 +2,11 @@ package test.practice.mywords.data
 
 import test.practice.mywords.data.Result.Error
 import test.practice.mywords.data.Result.Success
+import test.practice.mywords.data.remote.WordsRemoteDataSource
 
-class FakeDataSource(
+class FakeRemoteDataSource(
     var words: MutableList<Word>? = mutableListOf()
-) : WordsDataSource {
+) : WordsRemoteDataSource() {
 
     override suspend fun getWords(): Result<List<Word>> {
         words?.let { return Success(it) }

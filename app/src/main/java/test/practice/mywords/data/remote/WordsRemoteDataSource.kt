@@ -11,7 +11,7 @@ import test.practice.mywords.data.WordsDataSource
 /**
  * Implementation of the data source that adds a latency simulating network.
  */
-class WordsRemoteDataSource : WordsDataSource {
+open class WordsRemoteDataSource : WordsDataSource {
 
     companion object {
         private const val SERVICE_LATENCY_IN_MILLIS = 2000L

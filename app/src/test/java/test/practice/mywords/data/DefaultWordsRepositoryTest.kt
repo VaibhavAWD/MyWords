@@ -16,8 +16,8 @@ class DefaultWordsRepositoryTest {
     // SUT
     private lateinit var wordsRepository: DefaultWordsRepository
 
-    private lateinit var wordsRemoteDataSource: FakeDataSource
-    private lateinit var wordsLocalDataSource: FakeDataSource
+    private lateinit var wordsRemoteDataSource: FakeRemoteDataSource
+    private lateinit var wordsLocalDataSource: FakeLocalDataSource
 
     private val word1 = Word("word1")
     private val word2 = Word("word2")
@@ -29,8 +29,8 @@ class DefaultWordsRepositoryTest {
 
     @Before
     fun createRepository() {
-        wordsRemoteDataSource = FakeDataSource(remoteWords.toMutableList())
-        wordsLocalDataSource = FakeDataSource(localWords.toMutableList())
+        wordsRemoteDataSource = FakeRemoteDataSource(remoteWords.toMutableList())
+        wordsLocalDataSource = FakeLocalDataSource(localWords.toMutableList())
         wordsRepository = DefaultWordsRepository(wordsRemoteDataSource, wordsLocalDataSource)
     }
 
@@ -38,8 +38,9 @@ class DefaultWordsRepositoryTest {
     @Test
     fun getWords_emptyRepositoryAndUninitializedCache() = runBlocking {
         // GIVEN - repository is empty
-        val emptySource = FakeDataSource()
-        val wordsRepository = DefaultWordsRepository(emptySource, emptySource)
+        val emptyRemoteSource = FakeRemoteDataSource()
+        val emptyLocalSource = FakeLocalDataSource()
+        val wordsRepository = DefaultWordsRepository(emptyRemoteSource, emptyLocalSource)
 
         // WHEN - getting all words
         // THEN - its success

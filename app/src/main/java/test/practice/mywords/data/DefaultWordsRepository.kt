@@ -3,13 +3,15 @@ package test.practice.mywords.data
 import kotlinx.coroutines.*
 import test.practice.mywords.data.Result.Error
 import test.practice.mywords.data.Result.Success
+import test.practice.mywords.data.local.WordsLocalDataSource
+import test.practice.mywords.data.remote.WordsRemoteDataSource
 import timber.log.Timber
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
 
 class DefaultWordsRepository(
-    private val wordsRemoteDataSource: WordsDataSource,
-    private val wordsLocalDataSource: WordsDataSource,
+    private val wordsRemoteDataSource: WordsRemoteDataSource,
+    private val wordsLocalDataSource: WordsLocalDataSource,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ): WordsRepository {
 
