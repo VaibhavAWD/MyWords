@@ -7,4 +7,5 @@
     <string name="error_empty_word">Word cannot be empty</string>
     <string name="hint_enter_word">Enter word here…</string>
     <string name="label_add_new_word">Add New Word</string>
+    <string name="word_deleted">Word was deleted</string>
 </resources>
