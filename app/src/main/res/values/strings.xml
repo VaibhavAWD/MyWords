@@ -8,4 +8,7 @@
     <string name="hint_enter_word">Enter word here…</string>
     <string name="label_add_new_word">Add New Word</string>
     <string name="word_deleted">Word was deleted</string>
+    <string name="no_data">No Data Available</string>
+    <string name="action_delete">Delete</string>
+    <string name="label_word_detail">Word Detail</string>
 </resources>

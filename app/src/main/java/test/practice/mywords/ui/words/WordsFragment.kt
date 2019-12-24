@@ -77,7 +77,8 @@ class WordsFragment : Fragment(), KodeinAware {
     }
 
     private fun navigateToWordDetailFragment(word: String) {
-        // TODO: Navigate to WordDetailFragment.
+        val action = WordsFragmentDirections.actionOpenWord(word)
+        findNavController().navigate(action)
     }
 
 }

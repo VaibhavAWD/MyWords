@@ -51,6 +51,12 @@ class WordDetailViewModel(private val repository: WordsRepository) : ViewModel()
         }
     }
 
+    fun onRefresh() {
+        word.value?.let {
+            loadWord(it.word)
+        }
+    }
+
     private fun showProgress() {
         _dataLoading.value = true
     }

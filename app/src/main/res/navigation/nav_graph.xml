@@ -13,6 +13,9 @@
         <action
             android:id="@+id/actionAddNewWord"
             app:destination="@id/editorFragment" />
+        <action
+            android:id="@+id/actionOpenWord"
+            app:destination="@id/wordDetailFragment" />
     </fragment>
 
     <fragment
@@ -23,6 +26,18 @@
         <action
             android:id="@+id/actionWordAdded"
             app:popUpTo="@+id/wordsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/wordDetailFragment"
+        android:name="test.practice.mywords.ui.detail.WordDetailFragment"
+        android:label="@string/label_word_detail">
+        <action
+            android:id="@+id/actionWordDeleted"
+            app:popUpTo="@+id/wordsFragment" />
+        <argument
+            android:name="word"
+            app:argType="string" />
     </fragment>
 
 </navigation>

@@ -3,6 +3,7 @@ package test.practice.mywords.util
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import test.practice.mywords.data.WordsRepository
+import test.practice.mywords.ui.detail.WordDetailViewModel
 import test.practice.mywords.ui.editor.EditorViewModel
 import test.practice.mywords.ui.words.WordsViewModel
 
@@ -16,6 +17,7 @@ class ViewModelFactory(
             when {
                 isAssignableFrom(WordsViewModel::class.java) -> WordsViewModel(repository)
                 isAssignableFrom(EditorViewModel::class.java) -> EditorViewModel(repository)
+                isAssignableFrom(WordDetailViewModel::class.java) -> WordDetailViewModel(repository)
                 else -> throw IllegalArgumentException("Unknown model class: $modelClass")
             }
         } as T
