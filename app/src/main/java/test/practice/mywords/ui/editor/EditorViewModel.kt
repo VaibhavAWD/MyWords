@@ -10,7 +10,7 @@ import test.practice.mywords.data.Word
 import test.practice.mywords.data.WordsRepository
 import test.practice.mywords.util.Event
 
-class EditorViewModel(private val repository: WordsRepository): ViewModel() {
+class EditorViewModel(private val repository: WordsRepository) : ViewModel() {
 
     // Two-way DataBinding
     val word = MutableLiveData<String>()
@@ -18,12 +18,16 @@ class EditorViewModel(private val repository: WordsRepository): ViewModel() {
     private val _message = MutableLiveData<Event<Int>>()
     val message: LiveData<Event<Int>> = _message
 
+    private val _newWordAddedEvent = MutableLiveData<Event<Unit>>()
+    val newWordAddedEvent: LiveData<Event<Unit>> = _newWordAddedEvent
+
     fun saveWord() {
         if (!hasValidData()) return
         viewModelScope.launch {
             val newWord = Word(word.value!!)
             repository.saveWord(newWord)
             showMessage(R.string.word_saved)
+            _newWordAddedEvent.value = Event(Unit)
         }
     }
 

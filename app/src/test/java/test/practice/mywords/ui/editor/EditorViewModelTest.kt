@@ -69,6 +69,9 @@ class EditorViewModelTest {
 
         // Then success message is shown
         assertLiveDataEventTriggered(editorViewModel.message, R.string.word_saved)
+
+        // Then user is redirected to home screen
+        assertLiveDataEventTriggered(editorViewModel.newWordAddedEvent, Unit)
     }
 
     @Test
