@@ -3,4 +3,6 @@
     <string name="error_loading_words">Error while loading words</string>
     <string name="all_words_deleted">All words were deleted</string>
     <string name="no_words">No words to display</string>
+    <string name="word_saved">Word Saved</string>
+    <string name="error_empty_word">Word cannot be empty</string>
 </resources>
