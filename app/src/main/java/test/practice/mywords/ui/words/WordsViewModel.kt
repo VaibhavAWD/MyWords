@@ -6,6 +6,7 @@ import test.practice.mywords.R
 import test.practice.mywords.data.Result.Success
 import test.practice.mywords.data.Word
 import test.practice.mywords.data.WordsRepository
+import test.practice.mywords.util.EspressoIdlingResource
 import test.practice.mywords.util.Event
 
 class WordsViewModel(private val repository: WordsRepository) : ViewModel() {
@@ -31,6 +32,9 @@ class WordsViewModel(private val repository: WordsRepository) : ViewModel() {
 
     fun loadWords(forceUpdate: Boolean = false) {
         showProgress()
+
+        EspressoIdlingResource.increment() // Set app as busy.
+
         viewModelScope.launch {
             val result = repository.getWords(forceUpdate)
             if (result is Success) {
@@ -39,6 +43,9 @@ class WordsViewModel(private val repository: WordsRepository) : ViewModel() {
                 _words.value = emptyList()
                 showMessage(R.string.error_loading_words)
             }
+
+            EspressoIdlingResource.decrement()
+
             hideProgress()
         }
     }

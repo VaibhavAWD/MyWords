@@ -48,6 +48,8 @@ ext {
 
     // Instrumented Testing versions
     androidXTestCoreVersion = '1.2.0-beta01'
+    androidXTestRulesVersion = '1.2.0'
+    espressoVersion = '3.3.0-alpha03'
 
     // Third Party versions
     timber_version = "4.7.1"

@@ -17,7 +17,7 @@ android {
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "test.practice.mywords.util.CustomTestRunner"
         multiDexEnabled true
     }
     buildTypes {
@@ -46,6 +46,7 @@ android {
     }
     dataBinding {
         enabled true
+        enabledForTests true
     }
 }
 
@@ -86,8 +87,12 @@ dependencies {
     // Instrumented Testing Dependencies
     testImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation "androidx.test:rules:$androidXTestRulesVersion"
+    androidTestImplementation "androidx.test:runner:$androidXTestRulesVersion"
     androidTestImplementation "androidx.room:room-testing:$room_version"
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
 
     // Third Party Dependencies
     // Timber - For logging
