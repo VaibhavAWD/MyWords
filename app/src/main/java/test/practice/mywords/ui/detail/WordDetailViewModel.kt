@@ -28,18 +28,25 @@ class WordDetailViewModel(private val repository: WordsRepository) : ViewModel()
     private val _wordDeletedEvent = MutableLiveData<Event<Unit>>()
     val wordDeletedEvent: LiveData<Event<Unit>> = _wordDeletedEvent
 
-    fun loadWord(word: String) {
-        showProgress()
-        viewModelScope.launch {
-            val result = repository.getWord(word)
-            if (result is Success) {
-                _word.value = result.data
-                _dataAvailable.value = true
-            } else {
-                _word.value = null
-                _dataAvailable.value = false
+    fun loadWord(word: String?) {
+        if (word != null) {
+            showProgress()
+            viewModelScope.launch {
+                val result = repository.getWord(word)
+                if (result is Success) {
+                    _word.value = result.data
+                    _word.value?.let {
+                        _dataAvailable.value = true
+                        return@let
+                    }
+                    // word is null means it was not found
+                    _dataAvailable.value = false
+                } else {
+                    _word.value = null
+                    _dataAvailable.value = false
+                }
+                hideProgress()
             }
-            hideProgress()
         }
     }
 

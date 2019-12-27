@@ -83,7 +83,7 @@ class WordDetailFragment : Fragment(), KodeinAware {
     }
 
     private fun loadWord() {
-        binding.viewmodel?.loadWord(getWord()!!)
+        binding.viewmodel?.loadWord(getWord())
     }
 
     private fun navigateToWordsFragment() {
