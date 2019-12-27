@@ -93,6 +93,12 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
+    androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
+    implementation "androidx.fragment:fragment-testing:$fragmentVersion"
+    implementation "androidx.fragment:fragment:$fragmentVersion"
+    implementation "androidx.test:core:$androidXTestCoreVersion"
+    implementation "androidx.test:rules:$androidXTestRulesVersion"
+    implementation "androidx.test:runner:$androidXTestRulesVersion"
 
     // Third Party Dependencies
     // Timber - For logging
