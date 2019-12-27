@@ -10,6 +10,7 @@ object WordsListBindings {
     @BindingAdapter("app:words")
     fun setWords(rv: RecyclerView, words: List<Word>?) {
         with(rv.adapter as WordsListAdapter) {
+            this.setWords(words)
             words?.let {
                 submitList(it)
             }

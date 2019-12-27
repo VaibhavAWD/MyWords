@@ -9,7 +9,18 @@ import com.google.android.material.snackbar.Snackbar
 import test.practice.mywords.ui.words.WordsViewModel
 
 fun View.showSnackbar(message: Int) {
-    Snackbar.make(this, message, Snackbar.LENGTH_SHORT).show()
+    Snackbar.make(this, message, Snackbar.LENGTH_SHORT).run {
+        addCallback(object : Snackbar.Callback() {
+            override fun onShown(sb: Snackbar?) {
+                EspressoIdlingResource.increment() // Set app as busy.
+            }
+
+            override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                EspressoIdlingResource.decrement() // Set app as idle.
+            }
+        })
+        show()
+    }
 }
 
 fun View.showToast(message: Int) {

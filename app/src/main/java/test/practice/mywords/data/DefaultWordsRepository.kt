@@ -5,6 +5,7 @@ import test.practice.mywords.data.Result.Error
 import test.practice.mywords.data.Result.Success
 import test.practice.mywords.data.local.WordsLocalDataSource
 import test.practice.mywords.data.remote.WordsRemoteDataSource
+import test.practice.mywords.util.EspressoIdlingResource
 import timber.log.Timber
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentMap
@@ -18,10 +19,14 @@ class DefaultWordsRepository(
     private var cachedWords: ConcurrentMap<String, Word>? = null
 
     override suspend fun getWords(forceUpdate: Boolean): Result<List<Word>> {
+
+        EspressoIdlingResource.increment() // Set app as busy.
+
         return withContext(ioDispatcher) {
             // respond immediately with cache if available and not dirty
             if (!forceUpdate) {
                 cachedWords?.let { cachedWords ->
+                    EspressoIdlingResource.decrement() // Set app as idle.
                     return@withContext Success(cachedWords.values.sortedBy { it.word })
                 }
             }
@@ -30,6 +35,8 @@ class DefaultWordsRepository(
 
             // refresh the cache with new words
             (newWords as? Success)?.let { refreshCache(it.data) }
+
+            EspressoIdlingResource.decrement() // Set app as idle.
 
             cachedWords?.values?.let { words ->
                 return@withContext Success(words.sortedBy { it.word })
@@ -70,9 +77,13 @@ class DefaultWordsRepository(
     }
 
     override suspend fun getWord(word: String, forceUpdate: Boolean): Result<Word> {
+
+        EspressoIdlingResource.increment() // Set app as busy.
+
         return withContext(ioDispatcher) {
             // respond immediately with cache if available not dirty
             cachedWords?.get(word)?.let {
+                EspressoIdlingResource.decrement() // Set app as idle.
                 return@withContext Success(it)
             }
 
@@ -80,6 +91,8 @@ class DefaultWordsRepository(
 
             // refresh the cache with new word
             (newWord as? Success)?.let { cacheWord(it.data) }
+
+            EspressoIdlingResource.decrement() // Set app as idle.
 
             return@withContext newWord
         }
