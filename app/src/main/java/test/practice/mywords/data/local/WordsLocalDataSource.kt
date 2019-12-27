@@ -24,7 +24,12 @@ open class WordsLocalDataSource(
 
     override suspend fun getWord(word: String): Result<Word> = withContext(ioDispatcher) {
         return@withContext try {
-            Success(wordsDao!!.getWord(word))
+            val loaded = wordsDao?.getWord(word)
+            if (loaded != null) {
+                return@withContext Success(loaded)
+            } else {
+                return@withContext Error(Exception("Word not found"))
+            }
         } catch (e: Exception) {
             Error(e)
         }
